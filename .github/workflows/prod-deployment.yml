@@ -1,0 +1,27 @@
+name: Production Deployment
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install and setup Node version
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20.10.0"
+          cache: "npm"
+      - name: Setup the AWS Cli
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region:
+          aws-access-key-id:
+          aws-secret-access-key:
+      - run: npm ci
+      - run: NODE_ENV=production npm run build --if-present
+      - run: aws s3 sync ./strapi s3:// --quiet --delete
+
+
+
+
