@@ -1,0 +1,32 @@
+module.exports = {
+  apps: [
+    {
+      name: "APPLICATION NAME",
+      cwd: "/var/www/DOMAINNAME.com",
+      script: "node",
+      args: "server.js",
+      watch: ["src", "config", "database", "public", "build", "exports"],
+      watch_delay: 5000,
+      restart_delay: 5000,
+      ignore_watch: ["public/uploads"],
+      exp_backoff_restart_delay: 100,
+      env: {
+        NODE_ENV: "production",
+        HOST: "0.0.0.0",
+        PORT: 80,
+        APP_KEYS: "",
+        API_TOKEN_SALT: "",
+        ADMIN_JWT_SECRET: "",
+        JWT_SECRET: "",
+        DATABASE_HOST: "",
+        DATABASE_PORT: 3306,
+        DATABASE_NAME: "",
+        DATABASE_USERNAME: "",
+        DATABASE_PASSWORD: "",
+        DATABASE_SSL: true,
+        DATABASE_TZ: "UTC",
+        PUBLIC_URL: "",
+      },
+    },
+  ],
+};
