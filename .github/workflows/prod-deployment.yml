@@ -20,4 +20,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - run: npm ci
       - run: NODE_ENV=production npm run build --if-present
-      - run: aws s3 sync ./strapi s3:// --quiet --delete
+      - run: aws s3 sync ./strapi s3://astroship-bucket/strapi --quiet --delete
